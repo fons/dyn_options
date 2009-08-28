@@ -31,6 +31,7 @@ def test1() :
         print "Failed test1 : parsing ", str(L)
         print "generated : ", option
         print "internals : ", option.__repr__()
+        return -1
 
     print "pass test1"
 
@@ -54,6 +55,7 @@ def test2() :
         print "Failed test2 : parsing ", str(L)
         print "generated : ", option
         print "internals : ", option.__repr__()
+        return -1
 
     print "pass test2"
 
@@ -78,6 +80,7 @@ def test3() :
         print "Failed test3 : parsing ", str(L)
         print "generated : ", option
         print "internals : ", option.__repr__()
+        return -1
 
     print "pass test3"
 
@@ -115,6 +118,7 @@ def test4() :
         print "Failed test4 : parsing ", str(L)
         print "generated : ", option
         print "internals : ", option.__repr__()
+        return -1
 
     print "pass test4"
     return 0
@@ -161,8 +165,33 @@ def test5() :
         print "Failed test5 : parsing ", str(L)
         print "generated : ", option
         print "internals : ", option.__repr__()
+        return -1
 
     print "pass test5"
+    return 0
+
+def test6() :
+
+    """
+    Test to see if option prints...
+    """
+
+    L=['./dyn_options.py', '--opt1', 'opt1_value', '-opt2', 'opt2_value', '-opt3']
+    option = dyn_options.create_option(L, option_defaults())
+    try :
+        print "The command line is : ", L, " with defaults :", option_defaults()
+        print "You should see the option print it's 'public' members:" 
+        print option
+        print "You should see the option print all its members:" 
+        option.__repr__()
+
+    except :
+        traceback.print_exc()
+        
+        print "Failed test : parsing ", str(L)
+        print "this is the print test; so I can't print out the option object"
+        return -1
+    print "pass test6"
     return 0
 
 
@@ -172,6 +201,7 @@ def main(argv) :
     test3()
     test4()
     test5()
-    
+    test6()
+
 if __name__ == '__main__':
     sys.exit(main(sys.argv)) 

@@ -6,28 +6,34 @@ import types
 class dyn_options :
 
     def __init__(self, d) :
-        self.__dict__  = d
-        self._freeze = False
-        self._internals=["_internals","_freeze", "defaults"] 
+        self.__dict__   = d
+        self._freeze    = False
+        self._internals = ["_internals","_freeze", "defaults"] 
+
     def __repr__(self) :
-        L=["options :"]
-        L = L + map(self.make_rep, self.__dict__)
-        return string.join(L,"\n")
+        return self.__make_str(self.__id)
 
     def __str__(self) :
-        L=["options :"]
-        L = L + map(self.make_rep, filter(lambda k : k not in self._internals, self.__dict__))
-        return string.join(L,"\n")
+        return self.__make_str(self.__excl_internal_symbols)
 
-    def make_rep(self, key) :
+    def __id(self, k) :
+        return True
+
+    def __excl_internal_symbols(self, k) :
+        return True #k not in self._internals
+        
+    def __make_str(self, fn) :
+        L = ["options :"]
+        L = L + map(self.__make_rep, filter(fn, self.__dict__))
+        return string.join(L,"\n")
+        
+    def __make_rep(self, key) :
         return "\t#) " + str(key) + " ==> " + str(self.__dict__[key]) 
 
-    def __getattr__(self, attrname) :
-        """
-        if not set, return False
-        """
-        return False 
 
+    def __getattr__(self, attrname) :
+        return False 
+    
     def freeze(self) :
         self._freeze = True
         return self._freeze
@@ -51,17 +57,6 @@ class dyn_options :
         if attr != "defaults" and not self.__dict__.has_key(attr) and not _is_frozen():
             self.__dict__[attr] = value
             return
-
-        #if attr != "defaults" and self.__dict__.has_key(attr) and self.__dict__.has_key("defaults") :
-        #    """
-        #    Allows defaults to be overriden once
-        #    """
-
-        #    defaults = self.__dict__["defaults"]
-
-        #    if defaults.has_key(attr) and defaults[attr] == self.__dict__[attr] :
-        #        self.__dict__[attr] = value
-        #    return
 
         if  self.__dict__.has_key(attr) :
             return
