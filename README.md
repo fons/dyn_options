@@ -4,7 +4,7 @@
 ## What it is.
 
 *dyn_options* is an easy way to process command line options.
-It creates an *options* object, wich has the command line flags as attributes. 
+It creates an *options* object, which has the command line flags as attributes. 
 The value of the *option* object attribute is it's value provided on the command line.
 
 
@@ -16,7 +16,7 @@ a flag. Anything following a flag is concatenated until the next flag
 is encountered. 
 
 For example, '--opt4 hello world' will be converted to an attribute called opt4, 
-wich has a value of 'hello world'.
+which has a value of 'hello world'.
 
 
 A single flag will have a corresponding attribute value of True or False.
@@ -103,7 +103,7 @@ Here's the output for :
 ## License
 
 
-This is distrubuted under the BSD License. See the LICENSE file for details. 
+This is distributed under the BSD License. See the LICENSE file for details. 
 Obviously the LICENSE needs to be included in any further distribution.
 
 
