@@ -20,7 +20,7 @@ class dyn_options :
         return True
 
     def __excl_internal_symbols(self, k) :
-        return True #k not in self._internals
+        return k not in self._internals
         
     def __make_str(self, fn) :
         L = ["options :"]

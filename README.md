@@ -3,7 +3,7 @@
 
 ## What it is.
 
-dyn_options is an easy way to parse command line options.
+*dyn_options* is an easy way to parse command line options.
 It creates an options object, with the command line flags as attributes
 which the command line values as values.
 
@@ -20,10 +20,16 @@ Here is how an option object is created
 
     	option = dyn_options.create_option(argv, option_defaults())
 
-If you have defualts, have *option_defaults()* should return a dictionary of
+If you have defaults, have *option_defaults()* should return a dictionary of
 key-value pairs. 
 
-A simple flag is specified with a vlaue of True or False.
+A simple flag is specified with a value of True or False.
+
+Anything starting with a - or -- (i.e. a single or double dash) is considered
+a flag. Anything following a flag is concatenated until the next flag 
+is encountered. So, '--opt hello world' will be converted to an option flag 
+called opt4, with a value of 'hello world'.
+
 
 
 ## An example
@@ -57,6 +63,7 @@ A simple flag is specified with a vlaue of True or False.
        sys.exit(main(sys.argv)) 
 
 
+
 Here 's the out put for :
 
     ./example.py --opt2 --opt4 hello world
@@ -87,3 +94,9 @@ Here's the output for :
          #) program ==> ./example.py
          #) opt1 ==> new_value
     opt4 is not set
+
+## License
+This is distrubuted under the BSD License. See the LICENSE file for details. 
+Obviously the LICENSE needs to be included in any further distribution.
+
+
