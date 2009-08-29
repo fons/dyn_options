@@ -3,15 +3,26 @@
 
 ## What it is.
 
-*dyn_options* is an easy way to parse command line options.
-It creates an options object, with the command line flags as attributes
-which the command line values as values.
+*dyn_options* is an easy way to process command line options.
+It creates an *options* object, wich has the command line flags as attributes. 
+The value of the *option* object attribute is it's value provided on the command line.
+
 
 It allows for defaults, as well as a way to check whether the option has
 been set.
 
+Anything starting with a - or -- (i.e. a single or double dash) is considered
+a flag. Anything following a flag is concatenated until the next flag 
+is encountered. 
+
+For example, '--opt4 hello world' will be converted to an attribute called opt4, 
+wich has a value of 'hello world'.
+
+
+A single flag will have a corresponding attribute value of True or False.
  
-## How is it used.
+
+## How it is used.
 
 Here is how an option object is created
 
@@ -20,15 +31,9 @@ Here is how an option object is created
 
     	option = dyn_options.create_option(argv, option_defaults())
 
-If you have defaults, have *option_defaults()* should return a dictionary of
+If you have defaults, *option_defaults()* should return a dictionary of
 key-value pairs. 
 
-A simple flag is specified with a value of True or False.
-
-Anything starting with a - or -- (i.e. a single or double dash) is considered
-a flag. Anything following a flag is concatenated until the next flag 
-is encountered. So, '--opt hello world' will be converted to an option flag 
-called opt4, with a value of 'hello world'.
 
 
 
@@ -96,6 +101,8 @@ Here's the output for :
     opt4 is not set
 
 ## License
+
+
 This is distrubuted under the BSD License. See the LICENSE file for details. 
 Obviously the LICENSE needs to be included in any further distribution.
 
