@@ -34,7 +34,9 @@ Here is how an option object is created
 If you have defaults, *option_defaults()* should return a dictionary of
 key-value pairs. 
 
-
+The *option* object returned is immutable, so you can't reset the attribute values, 
+nor can you add additional attributes. There's no error raised when you try either 
+of these things. 
 
 
 ## An example
@@ -99,6 +101,10 @@ Here's the output for :
          #) program ==> ./example.py
          #) opt1 ==> new_value
     opt4 is not set
+
+## More information
+
+See *dyn_option_test.py* for more examples.
 
 ## License
 
