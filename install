@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+do_it() {
+	echo $*
+	eval $*
+}
+
+create_link() {
+file=$1	      
+if [ ! -e ./dyn_options/$file ]
+then 
+  do_it "cd ./dyn_options"
+  do_it "ln -s ../$file ."
+  do_it "cd .."
+fi
+}
+
+cmd="mkdir dyn_options"
+if [ ! -e dyn_options ] 
+then
+   do_it $cmd
+fi
+
+create_link "dyn_options.py"
+create_link "dyn_options_test.py"
+create_link "example.py"
+create_link "__init__.py"
+
+do_it "python setup.py install"
+

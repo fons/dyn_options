@@ -102,6 +102,15 @@ Here's the output for :
          #) opt1 ==> new_value
     opt4 is not set
 
+## Installation
+
+Run `install` from the command line. 
+
+This will create a subdirectory with the contents of the 
+package as well as a build directory. This is then pushed to the site-packages 
+directory by running `python setup.py install`
+  
+
 ## More information
 
 See *dyn_option_test.py* for more examples.

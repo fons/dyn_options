@@ -2,4 +2,5 @@
 *#
 .#*
 *pyc
-/js
+/build
+/dyn_options
